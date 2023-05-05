@@ -1,0 +1,31 @@
+#define LED D1 
+#define BUTTON D2 
+
+int switchState = 0; 
+int oldSwitchState = 0; 
+int lightsOn = 0; 
+
+#define LED D1 
+#define BUTTON D2 
+
+void setup() { 
+  pinMode(BUTTON, INPUT); 
+  pinMode(LED, OUTPUT); 
+}
+
+void loop() {
+  switchState = digitalRead(BUTTON); 
+  
+  if (switchState != oldSwitchState) {
+    oldSwitchState = switchState;
+    if (switchState == HIGH) {
+      lightsOn = !lightsOn;
+    }
+  }
+
+  if(lightsOn) {
+    digitalWrite(LED, HIGH);
+  } else {
+    digitalWrite(LED, LOW);
+  }
+}
